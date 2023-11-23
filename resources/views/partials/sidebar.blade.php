@@ -20,6 +20,9 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item"> <a class="nav-link" href="{{ URL::tokenRoute('shop') }}">Shop</a></li>
+        <li class="nav-item"> <a class="nav-link" href="{{ URL::tokenRoute('shop.redirect') }}">Redirect</a></li>
+        <li class="nav-item"> <a class="nav-link" href="{{ URL::tokenRoute('shop.submission') }}">Submission</a></li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
                 <i class="menu-icon mdi mdi-frequently-asked-questions"></i>

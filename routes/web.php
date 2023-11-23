@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DummyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,9 @@ Route::get('/groups-index', [\App\Http\Controllers\FaqController::class, 'groupI
 Route::post('/groups', [\App\Http\Controllers\FaqController::class, 'groupStore'])
     ->middleware(['verify.shopify'])
     ->name('group.store');
+
+
+Route::get("/shop",[DummyController::class,'theCurrentShop'])->middleware(['verify.shopify'])->name("shop");
+Route::post("/shop",[DummyController::class,'handlePost'])->middleware(['verify.shopify'])->name("shop.post");
+Route::get("/submit",[DummyController::class,'submissionHandler'])->middleware(['verify.shopify'])->name("shop.submission");
+Route::get("/redirect",[DummyController::class,'redirectTest'])->middleware(['verify.shopify'])->name("shop.redirect");
