@@ -66,8 +66,8 @@
     <script>
         function saveGroup() {
             axios.post('/groups', {
-                firstName: 'Fred',
-                lastName: 'Flintstone'
+                name: document.getElementById('name').value,
+                description: document.getElementById('description').value,
             })
                 .then(function (response) {
                     console.log(response);
