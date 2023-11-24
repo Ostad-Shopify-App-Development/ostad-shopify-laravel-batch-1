@@ -103,7 +103,7 @@
                                                 data-id="{{ $group->id }}" data-name="{{ $group->name }}"
                                                 data-description="{{ $group->description }}">Edit</button>
                                             &nbsp;
-                                            <a href="{{ URL::tokenRoute('group.faqs', ['groupid' => $group->id]) }}"
+                                            <a href="{{ URL::tokenRoute('group.faqs', ['id' => $group->id]) }}"
                                                 class="py-1.5 px-3 text-red-600 hover:text-gray-500 duration-150 hover:bg-red-50 border rounded-lg">FAQs</a>
                                         </td>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Redirect;
 use URL;
+use App\Models\Faq;
 
 class DummyController extends Controller
 {
@@ -59,5 +60,7 @@ class DummyController extends Controller
             'id' => $id
         ],200);
     }
+
+    
 
 }
