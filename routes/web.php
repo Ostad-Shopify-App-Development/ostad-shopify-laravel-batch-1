@@ -28,6 +28,10 @@ Route::get('/groups-index', [\App\Http\Controllers\FaqController::class, 'groupI
     ->middleware(['verify.shopify'])
     ->name('group.index');
 
+Route::post('/groups-index', [\App\Http\Controllers\FaqController::class, 'groupIndex'])
+    ->middleware(['verify.shopify'])
+    ->name('group.save');
+
 Route::post('/groups', [\App\Http\Controllers\FaqController::class, 'groupStore'])
     ->middleware(['verify.shopify'])
     ->name('group.store');
@@ -37,3 +41,4 @@ Route::get("/shop",[DummyController::class,'theCurrentShop'])->middleware(['veri
 Route::post("/shop",[DummyController::class,'handlePost'])->middleware(['verify.shopify'])->name("shop.post");
 Route::get("/submit",[DummyController::class,'submissionHandler'])->middleware(['verify.shopify'])->name("shop.submission");
 Route::get("/redirect",[DummyController::class,'redirectTest'])->middleware(['verify.shopify'])->name("shop.redirect");
+Route::get("/check",[DummyController::class,'checkAuth'])->middleware(['verify.shopify'])->name("shop.check");

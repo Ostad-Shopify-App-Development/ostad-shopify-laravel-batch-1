@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Redirect;
+use URL;
 
 class DummyController extends Controller
 {
@@ -45,6 +46,18 @@ class DummyController extends Controller
 
     function redirectTest(){
         return redirect()->tokenRedirect("shop.submission");
+    }
+
+    function checkAuth(Request $request){
+        $shop = $request->user();
+        $domain = $shop->getDomain()->toNative();
+        $id = $shop->getId()->toNative();
+        // $shopApi = $shop->api()->rest('GET', '/admin/shop.json')['body']['shop'];
+        // // return response($shopApi,200);
+        return response([
+            'domain' => $domain,
+            'id' => $id
+        ],200);
     }
 
 }

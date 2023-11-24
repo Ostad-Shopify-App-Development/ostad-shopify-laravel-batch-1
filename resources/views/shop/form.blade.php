@@ -10,7 +10,7 @@
                 <p class="card-description">
                     Create a new group
                 </p>
-               <form class="forms-sample" action="{{ route('shop.post') }}" method="post">
+                <form class="forms-sample" action="{{ route('shop.post') }}" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Title">
@@ -22,10 +22,29 @@
                     @sessionToken
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
-               </form>
+                    <button type="button" onclick="checkAuth()" class="btn btn-light">Axios Check</button>
+
+
+                </form>
             </div>
         </div>
     </div>
 @endsection
 
 
+@push('scripts')
+    <script>
+        function checkAuth(e) {
+            //stop form submit
+            console.log("checking")
+            axios.get('/check')
+                .then(function(response) {
+                    console.log(response.data);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            return false;
+        }
+    </script>
+@endpush
