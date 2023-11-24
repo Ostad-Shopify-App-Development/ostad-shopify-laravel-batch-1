@@ -47,7 +47,32 @@ class FaqController extends Controller {
 
     function faqs(Request $request, $groupid){
         //get FAQs for a group
-        $faqs = Faq::where('group_id', $groupid)->get();
-        return response($groupid,200);
+        //check if this group id belongs to shop id
+        $group = Group::findOrFail($groupid);
+        $shop = $request->user();
+        if($group->shop_id != $request->user()->id){
+            return Redirect::tokenRedirect('group.index');
+        }
+
+        if ($request->isMethod('post')) {
+            $faqid = $request->faqid;
+            if ($faqid != 0) {
+                $faq = Faq::find($faqid);
+            } else {
+                $faq = new Faq();
+            }
+
+            $faq->question = $request->question;
+            $faq->answer = $request->answer;
+            $faq->group_id = $group->id;
+            $faq->shop_id = $shop->id;
+            $faq->status = 1;
+
+            $faq->save();
+
+        }
+
+        $faqs = Faq::where('group_id', $group->id)->get();
+        return view('group.faqs', compact('faqs', 'group'));
     }
 }
