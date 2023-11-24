@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Faq;
+use URL;
 
 class FaqController extends Controller {
-    public function groupIndex(Request $request): View {
+    public function groupIndex(Request $request) {
         //check if it is a POST request
         if ($request->isMethod('post')) {
 
@@ -26,7 +27,8 @@ class FaqController extends Controller {
             $group->status = 1;
 
             $group->save();
-
+            $redirectUrl = getRedirectRoute('group.index');
+            return redirect($redirectUrl);
         }
         $groups = Group::where('shop_id', auth()->user()->id)->get();
         return view('group.index', compact('groups'));
@@ -45,12 +47,12 @@ class FaqController extends Controller {
         return Redirect::tokenRedirect('group.index');
     }
 
-    function faqs(Request $request, $groupid){
+    function faqs(Request $request, $groupid) {
         //get FAQs for a group
         //check if this group id belongs to shop id
         $group = Group::findOrFail($groupid);
         $shop = $request->user();
-        if($group->shop_id != $request->user()->id){
+        if ($group->shop_id != $request->user()->id) {
             return Redirect::tokenRedirect('group.index');
         }
 
@@ -69,6 +71,13 @@ class FaqController extends Controller {
             $faq->status = 1;
 
             $faq->save();
+
+            // $redirectUrl = URL::tokenRoute('group.faqs', ['groupid' => $group->id]);
+            // $redirectUrl = str_replace("http","https",$redirectUrl);
+            // $redirectUrl .= "&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb3N0YWRzdG9yZTE2";
+
+            $redirectUrl = getRedirectRoute('group.faqs', ['groupid' => $group->id]);
+            return redirect($redirectUrl);
 
         }
 

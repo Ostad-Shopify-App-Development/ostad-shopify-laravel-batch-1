@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
-                    <form method="POST" action="{{ route('group.faqs.save', ['groupid' => $group->id]) }}"
+                    <form method="POST" action="{{ route('group.faqs.save', ['groupid' => $group->id]) }}&host={{getHost()}}"
                         class="space-y-5">
                         @sessionToken
                         <input type="hidden" id="groupid" name="groupid" value="{{ $group->id }}">

@@ -40,6 +40,13 @@
                 })
         })
 
+        // var sessionToken = setTimeout(() => {
+        //     utils.getSessionToken(app).then((token) => {
+        //         document.getElementByClassName('session-token').value = token;
+        //         console.log(token)
+        //     })
+        // }, 5000);
+
         var Turbolinks = require("turbolinks")
         Turbolinks.start()
     </script>

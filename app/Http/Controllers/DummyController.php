@@ -18,10 +18,10 @@ class DummyController extends Controller
     }
 
     function handlePost(Request $request){
-        $name = $request->input('name');
-        $description = $request->input('description');
-        $shop = $request->user();
-        $domain = $shop->getDomain()->toNative();
+        // $name = $request->input('name');
+        // $description = $request->input('description');
+        // $shop = $request->user();
+        // $domain = $shop->getDomain()->toNative();
 
 
         // return response([
@@ -30,7 +30,16 @@ class DummyController extends Controller
         //     'domain' => $domain
         // ],200);
 
-        return redirect()->tokenRedirect("shop.submission");
+        // $path = URL::tokenRoute('group.index');
+        // //replace http with https
+        // $path = str_replace("http","https",$path);
+        // $path= $path."&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb3N0YWRzdG9yZTE2";
+        // return view('utils.redirect',[
+        //     'path' => $path
+        // ]);
+        $path = getRedirectRoute('group.index');
+
+        return redirect($path);
     }
 
     function submissionHandler(Request $request){
@@ -61,6 +70,6 @@ class DummyController extends Controller
         ],200);
     }
 
-    
+
 
 }
