@@ -17,7 +17,7 @@ use App\Http\Controllers\DummyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response("Welcome to Shopify App Development Course",200);
 })->middleware(['verify.shopify'])->name('home');
 
 
@@ -46,9 +46,3 @@ Route::post('/faqs/{groupid}', [\App\Http\Controllers\FaqController::class, 'faq
 
 
 
-
-Route::get("/shop", [DummyController::class, 'theCurrentShop'])->middleware(['verify.shopify'])->name("shop");
-Route::post("/shop", [DummyController::class, 'handlePost'])->middleware(['verify.shopify'])->name("shop.post");
-// Route::get("/submit", [DummyController::class, 'submissionHandler'])->middleware(['verify.shopify'])->name("shop.submission");
-// Route::get("/redirect", [DummyController::class, 'redirectTest'])->middleware(['verify.shopify'])->name("shop.redirect");
-// Route::get("/check", [DummyController::class, 'checkAuth'])->middleware(['verify.shopify'])->name("shop.check");
