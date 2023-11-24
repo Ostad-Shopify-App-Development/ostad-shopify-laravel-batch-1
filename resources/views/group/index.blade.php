@@ -19,7 +19,8 @@
                         </p>
                     </div>
                     <div>
-                        <button onclick="hideCreateGroup()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                        <button onclick="hideCreateGroup()"
+                            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
                             Cancel
                         </button>
                     </div>
@@ -28,19 +29,20 @@
                 <div class="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
                     <form method="POST" action="{{ route('group.save') }}" class="space-y-5">
                         @sessionToken
+                        <input type="hidden" id="groupid" name="groupid" value='0'>
                         <div>
                             <label class="font-medium"> Group Name</label>
-                            <input type="text" name="name" required
+                            <input type="text" id="name" name="name" required
                                 class="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg" />
                         </div>
                         <div>
                             <label class="font-medium"> Description </label>
-                            <textarea rows="3" name="description"
+                            <textarea rows="3" id="description" name="description"
                                 class="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"></textarea>
                         </div>
                         <button type="submit"
                             class="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
-                            Add New Group
+                            Save Group
                         </button>
                     </form>
                 </div>
@@ -64,7 +66,8 @@
                             </p>
                         </div>
                         <div>
-                            <button onclick="showCreateGroup()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="showCreateGroup()"
+                                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
                                 Create Group
                             </button>
                         </div>
@@ -84,8 +87,10 @@
                             <tbody class="text-gray-600 divide-y">
                                 @foreach ($groups as $group)
                                     <tr>
-                                        <td class="pr-6 py-4 whitespace-nowrap"> {{ $group->name }}</td>
-                                        <td class="pr-6 py-4 whitespace-nowrap">
+                                        <td class="pr-6 py-4 whitespace-nowrap ">
+                                            {{ $group->name }}
+                                        </td>
+                                        <td class="pr-6 py-4 whitespace-nowrap ">
                                             {{ $group->description }}
                                         </td>
                                         <td class="pr-6 py-4 whitespace-nowrap"><span
@@ -93,11 +98,13 @@
                                         </td>
 
                                         <td class="text-right whitespace-nowrap">
-                                            <a href="javascript:void()"
-                                                class="py-1.5 px-3 text-gray-600 hover:text-gray-500 duration-150 hover:bg-gray-50 border rounded-lg">Edit</a>
+                                            <button onclick="editGroup(this)"
+                                                class="py-1.5 px-3 text-gray-600 hover:text-gray-500 duration-150 hover:bg-gray-50 border rounded-lg"
+                                                data-id="{{ $group->id }}" data-name="{{ $group->name }}"
+                                                data-description="{{ $group->description }}">Edit</button>
                                             &nbsp;
-                                            <a href="javascript:void()"
-                                                class="py-1.5 px-3 text-red-600 hover:text-gray-500 duration-150 hover:bg-red-50 border rounded-lg">Delete</a>
+                                            <a href="{{ URL::tokenRoute('group.faqs', ['id' => $group->id]) }}"
+                                                class="py-1.5 px-3 text-red-600 hover:text-gray-500 duration-150 hover:bg-red-50 border rounded-lg">FAQs</a>
                                         </td>
 
                                     </tr>
@@ -117,13 +124,25 @@
 
 @push('scripts')
     <script>
-
         function showCreateGroup() {
             document.getElementById('create-group').classList.remove('hidden');
         }
 
-        function hideCreateGroup(){
+        function hideCreateGroup() {
             document.getElementById('create-group').classList.add('hidden');
+            //clear the values
+            document.getElementById('name').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('groupid').value = '';
+        }
+
+        function editGroup(button) {
+            console.log(button.dataset);
+            document.getElementById('create-group').classList.remove('hidden');
+            //get the data-name, data-description and data-id
+            document.getElementById('name').value = button.dataset.name;
+            document.getElementById('description').value = button.dataset.description;
+            document.getElementById('groupid').value = button.dataset.id;
         }
         // function saveGroup() {
         //     axios.post('/groups', {

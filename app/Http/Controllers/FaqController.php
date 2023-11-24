@@ -13,14 +13,28 @@ class FaqController extends Controller
     {
         //check if it is a POST request
         if ($request->isMethod('post')) {
-            $group = new Group();
 
-            $group->name = $request->name;
-            $group->description = $request->description;
-            $group->shop_id = auth()->user()->id;
-            $group->status = 1;
+            $groupid = $request->groupid;
+            if($groupid != 0){
+                $group = Group::find($groupid);
+                $group->name = $request->name;
+                $group->description = $request->description;
+                $group->shop_id = auth()->user()->id;
+                $group->status = 1;
 
-            $group->save();
+                $group->save();
+            }
+            else{
+                $group = new Group();
+
+                $group->name = $request->name;
+                $group->description = $request->description;
+                $group->shop_id = auth()->user()->id;
+                $group->status = 1;
+
+                $group->save();
+            }
+
         }
         $groups = Group::where('shop_id', auth()->user()->id)->get();
         return view('group.index', compact('groups'));
@@ -38,6 +52,5 @@ class FaqController extends Controller
 
         $group->save();
         return Redirect::tokenRedirect('group.index');
-
     }
 }
