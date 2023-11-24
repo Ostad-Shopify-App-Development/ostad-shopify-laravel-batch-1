@@ -72,10 +72,6 @@ class FaqController extends Controller {
 
             $faq->save();
 
-            // $redirectUrl = URL::tokenRoute('group.faqs', ['groupid' => $group->id]);
-            // $redirectUrl = str_replace("http","https",$redirectUrl);
-            // $redirectUrl .= "&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb3N0YWRzdG9yZTE2";
-
             $redirectUrl = getRedirectRoute('group.faqs', ['groupid' => $group->id]);
             return redirect($redirectUrl);
 

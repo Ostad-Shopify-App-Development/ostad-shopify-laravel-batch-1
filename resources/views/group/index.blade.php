@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
-                    <form method="POST" action="{{ route('group.save') }}?host={{getHost()}}" class="space-y-5">
+                    <form method="POST" action="{{ route('group.save') }}" class="space-y-5">
                         @sessionToken
                         <input type="hidden" name="host" value="{{getHost()}}">
                         <div>
