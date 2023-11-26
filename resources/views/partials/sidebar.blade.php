@@ -15,8 +15,7 @@
             </a>
             <div class="collapse" id="group">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ URL::tokenRoute('group.index') }}">All Group</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ URL::tokenRoute('t') }}">Create</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('group.index') }}">All Group</a></li>
                 </ul>
             </div>
         </li>

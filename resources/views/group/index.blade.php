@@ -10,26 +10,28 @@
                 <p class="card-description">
                     Create a new group
                 </p>
-{{--                <form class="forms-sample" action="{{ route('group.store') }}" method="post">--}}
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Title">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" rows="10" id="description"></textarea>
-                    </div>
+                <turbo-frame id="faq-group">
+                    <form class="forms-sample" action="/groups" method="post">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" rows="10" id="description"></textarea>
+                        </div>
 
-                    <div class="form-check form-check-flat form-check-primary">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input">
-                            Active
-                        </label>
-                    </div>
-                    @sessionToken
-                    <button onclick="saveGroup()" class="btn btn-primary me-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-{{--                </form>--}}
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                Active
+                            </label>
+                        </div>
+                        @sessionToken
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </form>
+                </turbo-frame>
             </div>
         </div>
     </div><div class="col-md-7 grid-margin stretch-card">
@@ -62,20 +64,3 @@
     </div>
 @endsection
 
-@push('scripts')
-    <script>
-        function saveGroup() {
-            axios.post('/groups', {
-                firstName: 'Fred',
-                lastName: 'Flintstone'
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-    </script>
-
-@endpush

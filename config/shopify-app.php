@@ -434,7 +434,7 @@ return [
     |
     */
 
-    'turbo_enabled' => (bool) env('SHOPIFY_TURBO_ENABLED', false),
+    'turbo_enabled' => (bool) env('SHOPIFY_TURBO_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
