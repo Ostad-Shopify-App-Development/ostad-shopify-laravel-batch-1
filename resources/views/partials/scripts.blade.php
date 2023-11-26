@@ -46,15 +46,11 @@
         //         console.log(token)
         //     })
         // }, 5000);
-
-        var Turbolinks = require("turbolinks")
-        Turbolinks.start()
     </script>
 
 
 
     @include('shopify-app::partials.token_handler')
-    @include('shopify-app::partials.flash_messages')
 @endif
 
 @stack('scripts')

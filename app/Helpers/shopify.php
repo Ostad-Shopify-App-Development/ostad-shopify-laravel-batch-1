@@ -1,5 +1,5 @@
 <?php
-use URL;
+use Illuminate\Support\Facades\URL;
 function getRedirectRoute($routeName, $params = [])
 {
     $path = URL::tokenRoute($routeName, $params);

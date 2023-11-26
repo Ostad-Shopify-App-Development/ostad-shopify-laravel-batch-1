@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Utilities\ShopifyRoute;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Utilities\SessionToken;
+use Osiset\ShopifyApp\Macros\TokenRoute;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        UrlGenerator::macro('shopifyRoute', new ShopifyRoute());
+        Blade::directive('sessionToken', new SessionToken());
     }
 }

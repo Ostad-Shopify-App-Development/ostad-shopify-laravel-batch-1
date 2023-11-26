@@ -33,6 +33,10 @@
                     class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
                     Source Code
                 </a>
+                <a href="{{ URL::tokenRoute('group.index') }}"
+                    class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
+                    Group
+                </a>
             </div>
         </div>
         @yield('contents')

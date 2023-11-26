@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DummyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,24 +16,21 @@ use App\Http\Controllers\DummyController;
 */
 
 Route::get('/', function () {
-    return response("Welcome to Shopify App Development Course",200);
+    return view('welcome');
 })->middleware(['verify.shopify'])->name('home');
 
 
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])
     ->middleware(['verify.shopify'])->name('product.index');
 
-Route::get('/groups-index', [\App\Http\Controllers\FaqController::class, 'groupIndex'])
+Route::get('/groups', [\App\Http\Controllers\FaqController::class, 'groupIndex'])
     ->middleware(['verify.shopify'])
     ->name('group.index');
 
-Route::post('/groups-index', [\App\Http\Controllers\FaqController::class, 'groupIndex'])
+Route::post('/groups', [\App\Http\Controllers\FaqController::class, 'groupStore'])
     ->middleware(['verify.shopify'])
     ->name('group.save');
 
-Route::post('/groups', [\App\Http\Controllers\FaqController::class, 'groupStore'])
-    ->middleware(['verify.shopify'])
-    ->name('group.store');
 
 
 Route::get('/faqs/{groupid}', [\App\Http\Controllers\FaqController::class, 'faqs'])

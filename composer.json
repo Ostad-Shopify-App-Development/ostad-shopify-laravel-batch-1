@@ -29,7 +29,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files":[
-            "app/Helpers/Shopify.php"
+            "app/Helpers/shopify.php"
         ]
     },
     "autoload-dev": {
