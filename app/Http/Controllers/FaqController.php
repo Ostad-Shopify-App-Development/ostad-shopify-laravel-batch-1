@@ -34,7 +34,8 @@ class FaqController extends Controller {
 
         $group->save();
 
-        return Redirect::away(URL::forShopify('group.index'));
+        return Redirect::away(URL::shopifyRoute('group.index'));
+
     }
 
     function faqs(Request $request, $groupid)
