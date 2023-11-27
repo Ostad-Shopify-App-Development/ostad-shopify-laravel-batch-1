@@ -39,6 +39,11 @@
                 </a> --}}
                 <ul class="flex space-x-5">
                     <li>
+                        <a href="{{ URL::tokenRoute('home') }}">
+                            Home
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ URL::tokenRoute('group.index') }}">
                             Groups
                         </a>
