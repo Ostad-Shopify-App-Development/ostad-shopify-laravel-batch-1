@@ -29,14 +29,32 @@
                         Shopify + Laravel - FAQ Application
                     </p>
                 </div>
-                <a target="_blank" href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1"
+                {{-- <a target="_blank" href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1"
                     class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
                     Source Code
                 </a>
                 <a href="{{ URL::tokenRoute('group.index') }}"
                     class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
                     Group
-                </a>
+                </a> --}}
+                <ul class="flex space-x-5">
+                    <li>
+                        <a href="{{ URL::tokenRoute('group.index') }}">
+                            Groups
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::tokenRoute('group.faqs', ['groupid' => 1]) }}">
+                            FAQs
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank"
+                            href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1">
+                            Source Code
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         @yield('contents')
