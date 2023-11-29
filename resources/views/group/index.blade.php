@@ -29,6 +29,8 @@
                 <div class="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
                     <form method="POST" action="{{ route('group.save') }}" class="space-y-5">
                         @sessionToken
+                        <input type="hidden" name="host" value="{{getHost()}}">
+                        <input type="hidden" name="groupid" id="groupid" value="0">
                         <div>
                             <label class="font-medium"> Group Name</label>
                             <input type="text" id="name" name="name" required
