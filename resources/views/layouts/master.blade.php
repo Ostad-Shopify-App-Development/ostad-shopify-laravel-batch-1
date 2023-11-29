@@ -54,11 +54,17 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ URL::tokenRoute('ui.components', ['groupid' => 1]) }}">
+                            UI Components
+                        </a>
+                    </li>
+                    <li>
                         <a target="_blank"
                             href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1">
                             Source Code
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>

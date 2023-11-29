@@ -40,5 +40,7 @@ Route::post('/faqs/{groupid}', [\App\Http\Controllers\FaqController::class, 'faq
     ->middleware(['verify.shopify'])
     ->name('group.faqs.save');
 
+Route::get('/ui/components', [\App\Http\Controllers\UIController::class, 'uiComponents'])->middleware(['verify.shopify'])->name('ui.components');
+
 
 
