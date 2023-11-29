@@ -1,6 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
-use Auth;
 
 function getRedirectRoute($routeName, $params = []) {
     $shop = Auth::user();
