@@ -19,6 +19,20 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(['verify.shopify'])->name('home');
 
+Route::get('/t', function () {
+    $user = \App\Models\User::find(6);
+    dd($user);
+
+    \App\Models\Setting::firstOrCreate([
+        'shop_id' => $user->id,
+        'shop_shopify_id' => $user->name,
+    ], [
+        'general' => [
+            'test' => 'test'
+        ]
+    ]);
+});
+
 Route::match(['GET', 'POST'], '/auth', [\App\Http\Controllers\AuthController::class, 'authenticate'])->name('auth');
 
 
@@ -41,6 +55,14 @@ Route::get('/faqs/{groupid}', [\App\Http\Controllers\FaqController::class, 'faqs
 Route::post('/faqs/{groupid}', [\App\Http\Controllers\FaqController::class, 'faqs'])
     ->middleware(['verify.shopify'])
     ->name('group.faqs.save');
+
+Route::get('/settings', [\App\Http\Controllers\SettingController::class, 'page'])
+    ->middleware(['verify.shopify'])
+    ->name('setting.index');
+
+Route::post('/settings', [\App\Http\Controllers\SettingController::class, 'store'])
+    ->middleware(['verify.shopify'])
+    ->name('setting.store');
 
 Route::get('/ui/components', [\App\Http\Controllers\UIController::class, 'uiComponents'])->middleware(['verify.shopify'])->name('ui.components');
 

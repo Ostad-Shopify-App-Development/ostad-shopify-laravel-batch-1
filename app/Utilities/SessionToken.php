@@ -16,8 +16,8 @@ class SessionToken
     {
         return <<<"HTML"
         <input type="hidden" class="session-token" name="token" value="" />
-        <input type="hidden" class="host" name="{{ request()->get('host') }}" value="" />
-        <input type="hidden" class="shop" name="{{ request()->get('shop') }}" value="" />
+        <input type="hidden" name="host" value="{{ request()->get('host') }}" />
+        <input type="hidden" name="shop" value="{{ request()->get('shop') }}" />
         HTML;
     }
 }

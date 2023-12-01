@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -69,21 +70,9 @@ class AuthController extends Controller
             $shop = User::where('name', $shopDomain->toNative())->first();
 
             if ($shop) {
-                $resp = $shop->api()->rest('GET', '/admin/shop.json');
-                $shopData = $resp['body']->shop;
-                $shop->shopify_id = $shopData->id;
-                $shop->save();
-                $metafieldsData = [
-                    "namespace" => "ostadapp",
-                    "key" => "settings",
-                    "value" => json_encode(['widget' => ['status' => 1]]),
-                    "type" => "json",
-                    "ownerId" => "gid://shopify/Shop/{$shop->shopify_id}",
-                ];
-                $shop->api()->graph(require resource_path('views/graphql/metafield.graph.php'), [
-                    'metafields' => $metafieldsData,
-                ]);
+                $this->afterAuth($shop);
             }
+
             return Redirect::route(
                 Util::getShopifyConfig('route_names.home'),
                 [
@@ -93,5 +82,36 @@ class AuthController extends Controller
             );
         }
     }
+
+    protected function afterAuth(User $shop)
+    {
+        $resp = $shop->api()->rest('GET', '/admin/shop.json');
+        $shopData = $resp['body']->shop;
+        $shop->shopify_id = $shopData->id;
+        $shop->save();
+
+        Setting::firstOrCreate([
+            'shop_id' => $shop->id,
+            'shop_shopify_id' => $shop->shopify_id,
+        ], [
+            'general' => null
+        ]);
+    }
+
+    protected function addMetafields(User $shop)
+    {
+
+        $metafieldsData = [
+            "namespace" => "ostadapp",
+            "key" => "settings",
+            "value" => json_encode(['widget' => ['status' => 1]]),
+            "type" => "json",
+            "ownerId" => "gid://shopify/Shop/{$shop->shopify_id}",
+        ];
+        $shop->api()->graph(require resource_path('views/graphql/metafield.graph.php'), [
+            'metafields' => $metafieldsData,
+        ]);
+    }
+
 
 }
