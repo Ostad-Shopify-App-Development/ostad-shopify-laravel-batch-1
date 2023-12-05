@@ -90,12 +90,6 @@ class AuthController extends Controller
         $shop->shopify_id = $shopData->id;
         $shop->save();
 
-        Setting::firstOrCreate([
-            'shop_id' => $shop->id,
-            'shop_shopify_id' => $shop->shopify_id,
-        ], [
-            'general' => null
-        ]);
     }
 
     protected function addMetafields(User $shop)

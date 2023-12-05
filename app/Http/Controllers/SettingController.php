@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -32,19 +33,38 @@ class SettingController extends Controller
             ],
         ];
 
-        $user = $request->user();
+        $shop = $request->user();
 
-        $user->settings()->updateOrCreate([
-            'shop_id' => $user->id,
-            'shop_shopify_id' => $user->shopify_id,
+        $setting = $shop->settings()->updateOrCreate([
+            'shop_id' => $shop->id,
+            'shop_shopify_id' => $shop->shopify_id,
         ], [
-            'general' => [
-                'faq' => $faq,
-            ],
+            'general' => $faq,
         ]);
+
+        if ($setting) {
+            $this->addMetafields($shop, $faq);
+        }
 
         //TODO: update data to shopify metafields
 
         return Redirect::tokenRedirect('setting.index');
+    }
+
+
+    protected function addMetafields(User $shop, array $data)
+    {
+
+        $metafieldsData = [
+            "namespace" => "ostad",
+            "key" => "settings",
+            "value" => json_encode($data),
+            "type" => "json",
+            "ownerId" => "gid://shopify/Shop/{$shop->shopify_id}",
+        ];
+
+        $shop->api()->graph(require resource_path('views/graphql/metafield.graph.php'), [
+            'metafields' => $metafieldsData,
+        ]);
     }
 }
