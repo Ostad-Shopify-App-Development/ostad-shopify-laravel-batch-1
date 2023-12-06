@@ -14,13 +14,12 @@
 </head>
 
 <body>
-    <div class="">
-        @include('partials.topbar')
-        <div class="contents">
-            @yield('contents')
-        </div>
+<div class="">
+    <div class="contents">
+        @yield('contents')
     </div>
-    @include('partials.scripts', ['_withAppBridge' => true])
+</div>
+@include('partials.scripts', ['_withAppBridge' => false])
 </body>
 
 </html>

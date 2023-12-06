@@ -201,7 +201,7 @@ return [
     |
     */
 
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,read_themes,read_orders'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,read_themes,read_orders,read_script_tags,write_script_tags'),
 
     /*
     |--------------------------------------------------------------------------
@@ -361,14 +361,12 @@ return [
     */
 
     'scripttags' => [
-        /*
+
             [
-                'src' => env('SHOPIFY_SCRIPTTAG_1_SRC', 'https://some-app.com/some-controller/js-method-response'),
+                'src' => env('APP_URL') . env('SHOPIFY_SCRIPTTAG_1_SRC'),
                 'event' => env('SHOPIFY_SCRIPTTAG_1_EVENT', 'onload'),
                 'display_scope' => env('SHOPIFY_SCRIPTTAG_1_DISPLAY_SCOPE', 'online_store')
             ],
-            ...
-        */
     ],
 
     /*
@@ -504,7 +502,9 @@ return [
          * Available levels: FULL, PARTIAL, UNSUPPORTED.
          */
         'unacceptable_levels' => [
-            Osiset\ShopifyApp\Objects\Enums\ThemeSupportLevel::UNSUPPORTED
+            Osiset\ShopifyApp\Objects\Enums\ThemeSupportLevel::UNSUPPORTED,
+            Osiset\ShopifyApp\Objects\Enums\ThemeSupportLevel::FULL,
+            Osiset\ShopifyApp\Objects\Enums\ThemeSupportLevel::PARTIAL,
         ]
     ],
 

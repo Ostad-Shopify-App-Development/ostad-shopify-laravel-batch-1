@@ -1,0 +1,10 @@
+let ost_general_faq = document.getElementById('ostad-general-faq');
+let ost_link = 'https://dear-workable-earwig.ngrok-free.app/storefront/widgets/general-faq?shop=' + Shopify.shop;
+let ost_iframe = document.createElement('iframe');
+ost_iframe.src = ost_link;
+ost_iframe.frameBorder = "0";
+ost_iframe.scrolling = "yes";
+ost_iframe.width = "100%";
+ost_iframe.height = "100%";
+ost_iframe.style = "min-height: 400px;";
+ost_general_faq.appendChild(ost_iframe);
