@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Create Group')
+@section('title', 'FAQs')
 
 @section('contents')
     <section class="bg-gray-100 hidden" id="create-group">

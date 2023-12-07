@@ -19,7 +19,7 @@
         @yield('contents')
     </div>
 </div>
-@include('partials.scripts', ['_withAppBridge' => false])
+{{-- @include('partials.scripts', ['_withAppBridge' => false]) --}}
 </body>
 
 </html>

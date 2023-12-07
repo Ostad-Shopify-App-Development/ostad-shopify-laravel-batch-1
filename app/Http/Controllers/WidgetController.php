@@ -19,8 +19,6 @@ class WidgetController extends Controller
             ->where('group_id', 1)
             ->get();
 
-
-
         return view('storefront.general-widget', compact('faqs', 'setting'));
     }
 }
