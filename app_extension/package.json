@@ -1,0 +1,17 @@
+{
+    "name": "faq-laravel",
+    "private": true,
+    "license": "UNLICENSED",
+    "scripts": {
+      "shopify": "shopify",
+      "build": "shopify app build",
+      "dev": "shopify app dev",
+      "info": "shopify app info",
+      "scaffold": "shopify app generate extension",
+      "deploy": "shopify app deploy"
+    },
+    "dependencies": {
+      "@shopify/app": "^3.52",
+      "@shopify/cli": "^3.52"
+    }
+  }
