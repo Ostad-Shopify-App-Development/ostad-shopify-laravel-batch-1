@@ -49,7 +49,7 @@ Route::group(['middleware' => ['verify.shopify']], function () {
     Route::get('/ui/components', [\App\Http\Controllers\UIController::class, 'uiComponents'])->name('ui.components');
 });
 
-Route::get('/storefront/widgets/general-faq',
+Route::get('/storefront/widgets/general-faq/{groupid}',
     [\App\Http\Controllers\WidgetController::class, 'showGeneralFaqWidget'])
     ->name('widget.general-faq');
 

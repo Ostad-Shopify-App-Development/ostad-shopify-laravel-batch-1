@@ -1,0 +1,25 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "FAQ-Laravel"
+client_id = "2baeeecce2e187cd219a31e06b62f46d"
+application_url = "https://happy-epic-dog.ngrok-free.app"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://happy-epic-dog.ngrok-free.app/authenticate",
+  "https://happy-epic-dog.ngrok-free.app/auth"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+dev_store_url = "ostadstore16.myshopify.com"
