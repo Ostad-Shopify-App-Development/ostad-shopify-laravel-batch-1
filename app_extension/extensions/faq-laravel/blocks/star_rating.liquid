@@ -9,7 +9,14 @@
   {{ 'ratings.home.recommendationText' | t }}
 {% endif %} {% endcomment %}
 
-<div id='ostad-general-faq' data-groupid="{{ block.settings.group_id }}"></div>
+{% comment %} {{ product.title }} {% endcomment %}
+
+{% comment %} Is Hidden? {{ product.metafields.custom.hide_faq }} {% endcomment %}
+
+{% if product.metafields.custom.hide_faq != true %}
+  <div id='ostad-general-faq' data-groupid="{{ block.settings.group_id }}"></div>
+{% endif %}
+{% comment %} <div id='ostad-general-faq' data-groupid="{{ block.settings.group_id }}"></div> {% endcomment %}
 
 <script src="{{ 'scripts.js' | asset_url }}" defer></script>
 
