@@ -367,11 +367,7 @@ return [
                 'event' => env('SHOPIFY_SCRIPTTAG_1_EVENT', 'onload'),
                 'display_scope' => env('SHOPIFY_SCRIPTTAG_1_DISPLAY_SCOPE', 'online_store')
             ],
-            // [
-            //     'src' => env('APP_URL') . env('SHOPIFY_SCRIPTTAG_2_SRC'),
-            //     'event' => env('SHOPIFY_SCRIPTTAG_2_EVENT', 'onload'),
-            //     'display_scope' => env('SHOPIFY_SCRIPTTAG_2_DISPLAY_SCOPE', 'online_store')
-            // ],
+
     ],
 
     /*
