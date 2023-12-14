@@ -14,6 +14,6 @@ const createOstIframe = () => {
     ostGeneralFaq.appendChild(ostIframe);
 };
 
-createOstIframe();
+// createOstIframe();
 
 
