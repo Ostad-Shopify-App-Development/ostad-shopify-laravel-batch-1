@@ -1,0 +1,20 @@
+{% assign full_url = request.host | append: request.path %}
+<div>
+    {% comment %} {{ "thumbs-up.png" | asset_url | img_tag }} {% endcomment %}
+    <img width="{{ block.settings.size }}" height="{{ block.settings.size }}" src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ full_url }}" alt="">
+</div>
+{% schema %}
+{
+  "name": "QR Code Image",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "size",
+      "label": "Size in Pixel (Square)",
+      "default": "150"
+    }
+
+  ]
+}
+{% endschema %}

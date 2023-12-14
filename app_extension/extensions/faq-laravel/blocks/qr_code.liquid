@@ -1,0 +1,23 @@
+
+{% assign full_url = request.host | append: request.path %}
+
+{% if block.settings.show_qr_code == true %}
+<div style="position: fixed; bottom: 0; right: 0">
+    {% comment %} {{ "thumbs-up.png" | asset_url | img_tag }} {% endcomment %}
+    <img width="150" height="150" src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ full_url }}" alt="">
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "QR Code",
+  "target": "body",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_qr_code",
+      "label": "Show QR Code"
+    }
+  ]
+}
+{% endschema %}
