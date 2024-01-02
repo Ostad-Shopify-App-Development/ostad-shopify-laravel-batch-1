@@ -349,6 +349,10 @@ return [
             'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'app/uninstalled'),
             'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://dear-workable-earwig.ngrok-free.app/webhook/app-uninstalled')
         ],
+        [
+            'topic' => env('SHOPIFY_WEBHOOK_2_TOPIC', 'products/update'),
+            'address' => env('SHOPIFY_WEBHOOK_2_ADDRESS', 'https://dear-workable-earwig.ngrok-free.app/webhook/products-update')
+        ],
     ],
 
     /*
