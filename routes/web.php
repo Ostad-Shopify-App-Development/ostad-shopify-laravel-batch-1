@@ -47,6 +47,9 @@ Route::group(['middleware' => ['verify.shopify']], function () {
         ->name('setting.store');
 
     Route::get('/ui/components', [\App\Http\Controllers\UIController::class, 'uiComponents'])->name('ui.components');
+
+    Route::get('/pricing', [\App\Http\Controllers\BillingController::class, 'getPricingPlans'])
+        ->name('billing.pricing');
 });
 
 Route::get('/storefront/widgets/general-faq/{groupid}',

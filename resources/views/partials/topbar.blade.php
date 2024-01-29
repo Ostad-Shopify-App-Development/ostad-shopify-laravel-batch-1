@@ -53,6 +53,12 @@
                     Settings
                 </a>
             </li>
+            <li>
+                <a
+                   href="{{ URL::tokenRoute('billing.pricing') }}">
+                    Pricing
+                </a>
+            </li>
 
         </ul>
     </div>
